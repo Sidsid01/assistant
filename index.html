@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detector AI</title>
+    <link rel="stylesheet" href="Ai1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for canvas particle network animation */
+        .hero {
+            position: relative;
+            overflow: hidden; /* Ensure particles stay within the section */
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Underline the current page link */
+        .nav-link.active {
+            text-decoration: underline;
+            text-decoration-color: aqua;
+            text-decoration-thickness: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link" id="home-link">Home</a></li>
+                <li><a href="about.html" class="nav-link" id="about-link">About</a></li>
+                <li><a href="contact.html" class="nav-link" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>SIDREON</h1>
+            <p>Share your thoughts, and talk with one of the most advanced AI.</p>
+            <!-- HTML for canvas particle network animation -->
+            <canvas id="particle-canvas"></canvas>
+        </section>
+        <section class="interaction">
+            <div class="input-area">
+                <a href="chatbot.html"><button id="text-input-btn">Chat to our AI friend</button></a> 
+                <a href="voice_input.html"><button id="voice-input-btn">Talk to our AI friend</button></a> 
+            </div>
+            <div class="output-area">
+                <h3> Introduction: </h3>
+                <p id="ai-output">
+                    Welcome to Sidreon, where advanced technology meets emotional intelligence. Powered by the latest innovations in Chat GPT's artificial intelligence, 
+                    Sidreon offers you a truly unique and supportive experience. Whether you're looking for a compassionate conversation, a virtual friend, or just someone who will try to listen to you, 
+                    Sidreon's AI capabilities are here for you. Utilizing state-of-the-art natural language processing and deep learning algorithms, Sidreon understands and responds to your emotions in real-time. 
+                    Experience the future of AI companionship and emotional support with Sidreon – your personal, empathetic AI friend, available whenever you need.
+                </p>
+            </div>
+        </section>
+        <div class="output-area">
+        <section class="ai-output">
+            <h2>About GPT-4 Technology</h2>
+            <p>GPT-4 represents a significant leap in artificial intelligence. It builds upon the groundbreaking work of its predecessors with improved natural language understanding and generation capabilities. 
+            GPT-4 can process complex queries, generate coherent and contextually relevant responses, and understand nuanced emotions. This makes interactions with Sidreon feel more human-like and engaging.</p>
+        </section>
+        <img src="gpt-4.jpg" alt="gptbot" class="image-outside">
+        
+        </div>
+        <div class="output-area">
+        <section class="ai-output">
+            <h2>Meet Gracie and Dave</h2>
+            <p>Sidreon features two remarkable AI companions: Gracie and Dave. Gracie is your personal therapist and emotionally intelligent friend, designed to provide compassionate and insightful conversations. 
+            Dave, on the other hand, is your friendly chatbot, ready to engage in diverse and stimulating discussions. Both Gracie and Dave are powered by the latest Chat GPT technologies, ensuring they understand and respond to your needs effectively.</p>
+        </section>
+        <img src="her5.jpg" alt="gptbot2" class="image-outsidee">
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 SIDREON. All rights reserved.</p>
+    </footer>
+     <script src = "index.js"></script>
+</body>
+</html>

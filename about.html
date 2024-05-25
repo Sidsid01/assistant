@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - SIDREON</title>
+    <link rel="stylesheet" href="About1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for canvas particle network animation */
+        .hero {
+            position: relative;
+            overflow: hidden; /* Ensure particles stay within the section */
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Underline the current page link */
+        .nav-link.active {
+            text-decoration: underline;
+            text-decoration-color: aqua;
+            text-decoration-thickness: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link" id="home-link">Home</a></li>
+                <li><a href="about.html" class="nav-link" id="about-link">About</a></li>
+                <li><a href="contact.html" class="nav-link" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>About SIDREON</h1>
+            <p>Learn more about our innovative AI technology.</p>
+            <!-- HTML for canvas particle network animation -->
+            <canvas id="particle-canvas"></canvas>
+        </section>
+        <section class="interaction">
+            <div class="output-area">
+                
+                <p>Welcome to Sidreon, a revolutionary AI platform powered by the latest advancements in Chat GPT-4 and 4.0 technologies. 
+                  Sidreon features two remarkable AI companions: Gracie, your personal therapist and emotionally intelligent friend, and Dave, your friendly chatbot for engaging and insightful conversations.
+                   Created by Sidharth Nair, a  Computer Science student from Canada, Sidreon combines cutting-edge AI with a deep understanding of human emotions to offer genuine support and companionship. 
+                   Experience the future of AI-driven communication with Reon, where advanced technology meets heartfelt connection.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 SIDREON. All rights reserved.</p>
+    </footer>
+    <script src="about.js"></script>
+</body>
+</html>

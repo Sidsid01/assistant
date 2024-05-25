@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIDREON</title>
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for canvas particle network animation */
+        .hero {
+            position: relative;
+            overflow: hidden; /* Ensure particles stay within the section */
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 60vh;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 21px;
+            background: #1e1e1e;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .conversation-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: #2e2e2e;
+            border-radius: 8px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .input-area button {
+            padding: 10px 20px;
+            background: #4caf50;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>SIDREON</h1>
+            <p>Experience the future of AI companionship and emotional support with Dave, our AI chatbot.</p>
+            <canvas id="particle-canvas"></canvas>
+        </section>
+        <section class="chat-container">
+            <div class="conversation-box" id="conversation-box"></div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button id="send-message">Send</button>
+            </div>
+            <div id="chat-status"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 SIDREON. All rights reserved.</p>
+    </footer>
+    <script src="chatbot.js"></script>
+</body>
+</html>

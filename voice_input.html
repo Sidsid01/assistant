@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Input</title>
+    <link rel="stylesheet" href="VoiceIN.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for canvas particle network animation */
+        .hero {
+            position: relative;
+            overflow: hidden; /* Ensure particles stay within the section */
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Voice Input</h1>
+            <p>Speak your thoughts, and let our AI analyze your emotional state.</p>
+            <canvas id="particle-canvas"></canvas>
+        </section>
+        <section class="interaction">
+            <div class="input-area">
+                <button id="start-recording">Start talking</button>
+                <button id="stop-recording">Stop Recording</button>
+                <div id="recording-status"></div>
+            </div>
+            <div class="output-area">
+                <h3>The Chat:</h3>
+                <div id="conversation-box"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 SIDREON. All rights reserved.</p>
+    </footer>
+    <script src="voice.js"></script>
+</body>
+</html>
