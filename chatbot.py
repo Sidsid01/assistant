@@ -1,10 +1,12 @@
 import asyncio
+import os
+
 import websockets
 import openai
 import json
 
 # Load your OpenAI API key
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 openai.api_key = OPENAI_API_KEY
 
 # Define the context for the chatbot
