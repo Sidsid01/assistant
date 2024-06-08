@@ -139,7 +139,7 @@ let audioChunks = [];
 
 socket.addEventListener("open", () => {
     console.log("WebSocket connection established");
-    document.getElementById('recording-status').textContent = 'Connected to server';
+    document.getElementById('recording-status').textContent = 'Gracie is ready to talk to you :)';
 });
 
 socket.addEventListener("error", (event) => {
@@ -149,7 +149,7 @@ socket.addEventListener("error", (event) => {
 
 socket.addEventListener("close", () => {
     console.log("WebSocket connection closed");
-    document.getElementById('recording-status').textContent = 'Disconnected from server';
+    document.getElementById('recording-status').textContent = 'Gracie has stopped listening';
 });
 
 socket.addEventListener('message', (event) => {
@@ -232,7 +232,7 @@ function handleRecording() {
         return;
     }
     isRecording = true;
-    recordingStatus.textContent = 'Recording...';
+    recordingStatus.textContent = 'Listening...';
     console.log('Recording started');
     audioChunks = [];
     silenceStart = Date.now();
@@ -243,7 +243,7 @@ function handleRecording() {
 
     mediaRecorder.onstop = () => {
         console.log('Recording stopped');
-        recordingStatus.textContent = 'Processing...';
+        recordingStatus.textContent = 'Thinking...';
         isRecording = false;
 
         const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });

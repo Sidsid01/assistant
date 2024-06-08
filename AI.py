@@ -26,7 +26,7 @@ RECORDING_PATH = "audio/recording.wav"
 RESPONSE_AUDIO_PATH = "audio/response.mp3"
 os.makedirs(os.path.dirname(RECORDING_PATH), exist_ok=True)
 
-context = "You are Gracie, Sid's caring and funny friend. Your answers should be limited to 1-2 short sentences."
+context = "Your name is  Gracie, You are caring and funny friend. Your answers should be limited to 1-2 short sentences."
 conversation = []
 
 # Audio recording settings
@@ -110,7 +110,7 @@ def record_audio():
                     rate=RATE, input=True,
                     frames_per_buffer=CHUNK)
 
-    print("Recording...")
+    print("Listening...")
     frames = []
     silent_chunks = 0
     silence_started = None
@@ -131,7 +131,7 @@ def record_audio():
             silent_chunks = 0
             silence_started = None
 
-    print("Finished recording.")
+    print("Finished Thinking.")
     stream.stop_stream()
     stream.close()
 
@@ -254,7 +254,7 @@ async def handle_connection(websocket: WebSocket):
 
                     if not transcript:
                         if allow_speaking:
-                            response = "Sorry, I couldn't understand what you said."
+                            response = "Sorry, I couldn't understand what you said. Could please repeat that or click on start recording again?"
                             await websocket.send_text(json.dumps({"response": response}))
                     else:
                         # Generate response only if allowed to speak

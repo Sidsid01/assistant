@@ -128,7 +128,8 @@ Particle = function () {
     }
 }
 
-const socket = new WebSocket("ws://localhost:8765/ws"); // Ensure this URL matches your FastAPI WebSocket endpoint
+document.addEventListener('DOMContentLoaded', (event) => {
+    const ws = new WebSocket('ws://127.0.0.1:8765/ws');
 
 const conversationBox = document.getElementById('conversation-box');
 const userInput = document.getElementById('user-input');
@@ -136,7 +137,8 @@ const sendMessageButton = document.getElementById('send-message');
 const chatStatus = document.getElementById('chat-status');
 
 ws.onopen = () => {
-    chatStatus.textContent = 'Connected to the chat server';
+    console.log('WebSocket connection opened');
+    chatStatus.textContent = 'Gracie is ready to chat with you :)';
 };
 
 ws.onerror = (error) => {
@@ -145,19 +147,22 @@ ws.onerror = (error) => {
 };
 
 ws.onmessage = (event) => {
+    console.log('Message received from server:', event.data);
     const data = JSON.parse(event.data);
     if (data.response) {
-        displayMessage('Dave', data.response);
+        displayMessage('Gracie', data.response);
     }
 };
 
 ws.onclose = () => {
+    console.log('WebSocket connection closed');
     chatStatus.textContent = 'Disconnected from the chat server';
 };
 
 sendMessageButton.addEventListener('click', () => {
     const message = userInput.value;
     if (message) {
+        console.log('Sending message:', message);
         displayMessage('You', message);
         ws.send(JSON.stringify({ input: message }));
         userInput.value = '';
@@ -176,4 +181,4 @@ function displayMessage(sender, message) {
     messageElement.textContent = `${sender}: ${message}`;
     conversationBox.appendChild(messageElement);
     conversationBox.scrollTop = conversationBox.scrollHeight;
-}
+}});
