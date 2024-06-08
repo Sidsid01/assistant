@@ -128,55 +128,52 @@ Particle = function () {
     }
 }
 
-const socket = new WebSocket("ws://localhost:8765");
+const socket = new WebSocket("ws://localhost:8765/ws"); // Ensure this URL matches your FastAPI WebSocket endpoint
 
-socket.addEventListener("open", () => {
-    console.log("WebSocket connection established");
-});
-
-socket.addEventListener("error", (event) => {
-    console.error("WebSocket error:", event);
-});
-
-socket.addEventListener("close", () => {
-    console.log("WebSocket connection closed");
-});
-
-socket.addEventListener('message', (event) => {
-    const response = JSON.parse(event.data);
-    console.log('Message from server:', response);
-
-    if (response.response) {
-        updateConversationBox('Dave', response.response || 'No response available');
-    }
-});
-
-const sendButton = document.getElementById('send-message');
-const messageInput = document.getElementById('user-input');
 const conversationBox = document.getElementById('conversation-box');
+const userInput = document.getElementById('user-input');
+const sendMessageButton = document.getElementById('send-message');
+const chatStatus = document.getElementById('chat-status');
 
-function updateConversationBox(speaker, text) {
-    const messageElement = document.createElement('p');
-    messageElement.textContent = `--- ${speaker}: ${text}`;
-    conversationBox.appendChild(messageElement);
-}
+ws.onopen = () => {
+    chatStatus.textContent = 'Connected to the chat server';
+};
 
-function sendMessage() {
-    const message = messageInput.value;
-    if (message && socket.readyState === WebSocket.OPEN) {
-        updateConversationBox('USER', message);
-        socket.send(JSON.stringify({ input: message }));
-        messageInput.value = '';
+ws.onerror = (error) => {
+    console.error('WebSocket error:', error);
+    chatStatus.textContent = 'Error connecting to the chat server';
+};
+
+ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (data.response) {
+        displayMessage('Dave', data.response);
     }
-}
+};
 
-sendButton.addEventListener('click', () => {
-    sendMessage();
+ws.onclose = () => {
+    chatStatus.textContent = 'Disconnected from the chat server';
+};
+
+sendMessageButton.addEventListener('click', () => {
+    const message = userInput.value;
+    if (message) {
+        displayMessage('You', message);
+        ws.send(JSON.stringify({ input: message }));
+        userInput.value = '';
+    }
 });
 
-messageInput.addEventListener('keydown', (event) => {
+userInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
-        sendMessage();
+        sendMessageButton.click();
     }
 });
+
+function displayMessage(sender, message) {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = `${sender}: ${message}`;
+    conversationBox.appendChild(messageElement);
+    conversationBox.scrollTop = conversationBox.scrollHeight;
+}

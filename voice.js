@@ -127,7 +127,7 @@ var w, h, loopId, id, canvas, ctx, particles;
             }
         }
 
-        const socket = new WebSocket("ws://localhost:8765");
+        const socket = new WebSocket("ws://localhost:8765/ws");
 let isSpeaking = false;
 let isRecording = false;
 let audioContext;
@@ -139,6 +139,7 @@ let audioChunks = [];
 
 socket.addEventListener("open", () => {
     console.log("WebSocket connection established");
+    document.getElementById('recording-status').textContent = 'Connected to server';
 });
 
 socket.addEventListener("error", (event) => {
@@ -148,6 +149,7 @@ socket.addEventListener("error", (event) => {
 
 socket.addEventListener("close", () => {
     console.log("WebSocket connection closed");
+    document.getElementById('recording-status').textContent = 'Disconnected from server';
 });
 
 socket.addEventListener('message', (event) => {
@@ -164,7 +166,7 @@ socket.addEventListener('message', (event) => {
                 if (!isSpeaking && !isRecording) {
                     startRecording();
                 }
-            }, 4000);  // 1-second delay before starting recording
+            }, 1000);  // 1-second delay before starting recording
         }
     } else {
         updateConversationBox('USER', response.transcription || 'No transcription available');
@@ -245,14 +247,22 @@ function handleRecording() {
         isRecording = false;
 
         const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-
-        if (socket.readyState === WebSocket.OPEN) {
-            socket.send(audioBlob);
-            audioChunks = [];
-        } else {
-            console.error('WebSocket connection is not open');
-            recordingStatus.textContent = 'Error connecting to server';
-        }
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(audioBlob);
+        reader.onloadend = () => {
+            if (socket.readyState === WebSocket.OPEN) {
+                const audioArrayBuffer = reader.result;
+                const data = {
+                    action: 'upload',
+                    audio: Array.from(new Uint8Array(audioArrayBuffer))
+                };
+                socket.send(JSON.stringify(data));
+                audioChunks = [];
+            } else {
+                console.error('WebSocket connection is not open');
+                recordingStatus.textContent = 'Error connecting to server';
+            }
+        };
     };
 
     mediaRecorder.start();
@@ -270,7 +280,7 @@ function checkSilence() {
 
     if (isSilent) {
         const now = Date.now();
-        if (now - silenceStart > 3000) {  // 2 seconds of silence
+        if (now - silenceStart > 3000) {  // 3 seconds of silence
             if (isRecording) {
                 mediaRecorder.stop();
             }
@@ -284,7 +294,8 @@ function checkSilence() {
 }
 
 startRecordingBtn.addEventListener('click', () => {
-    if (!isRecording && !isSpeaking&& !shouldStopRecording) {
+    shouldStopRecording = false;
+    if (!isRecording && !isSpeaking) {
         startRecording();
     }
 });
@@ -296,3 +307,15 @@ stopRecordingBtn.addEventListener('click', () => {
         console.log('Recording stopped by user');
     }
 });
+
+function sendMessage(message) {
+    const data = JSON.stringify(message);
+    console.log(`Sending message: ${data}`);
+    socket.send(data);
+}
+
+// Example of sending an input message
+sendMessage({ input: "Hello" });
+
+// Example of starting recording
+sendMessage({ action: "start" });
