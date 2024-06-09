@@ -4,3 +4,6 @@ build:
     - portaudio19-dev
     - libffi-dev
     - libyaml-dev
+    - libportaudio2
+    - libportaudiocpp0
+    - ffmpeg
