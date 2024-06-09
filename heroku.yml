@@ -1,0 +1,6 @@
+build:
+  packages:
+    - libasound2-dev
+    - portaudio19-dev
+    - libffi-dev
+    - libyaml-dev
