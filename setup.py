@@ -81,7 +81,7 @@ setup(
         'pysolr==3.9.0',
         'python-dotenv==1.0.0',
         'pytweening==1.2.0',
-        'PyYAML==5.4.1',
+        'PyYAML==6.0',
         'Record==4.1',
         'requests==2.31.0',
         'rhasspy-silence==0.4.0',
