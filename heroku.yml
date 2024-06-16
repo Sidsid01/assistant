@@ -7,3 +7,13 @@ build:
     - libportaudio2
     - libportaudiocpp0
     - ffmpeg
+    - python3-dev
+    - build-essential
+    - libpython3.8-dev
+    - libasound2
+    - libavcodec-dev
+    - libavformat-dev
+    - libavdevice-dev
+    - libswscale-dev
+    - libavutil-dev
+    - libswresample-dev
