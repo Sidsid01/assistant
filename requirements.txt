@@ -1,4 +1,5 @@
 Cython==0.29.34
+wheel==0.38.4
 afn==0.1.2012.5.17.22.8
 aiofiles==23.2.1
 aiohttp==3.9.5
@@ -72,7 +73,7 @@ PyScreeze==0.1.30
 pysolr==3.9.0
 python-dotenv==1.0.0
 pytweening==1.2.0
-PyYAML==6.0
+PyYAML==5.4.1  
 Record==4.1
 requests==2.31.0
 rhasspy-silence==0.4.0
